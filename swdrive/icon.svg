@@ -1,62 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 445.77 432.81">
+<svg width="260px" height="260px" viewBox="0 0 445.77 432.81" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <style>
-      .cls-1 {
-        fill: #0b9496;
-      }
-
-      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13 {
-        stroke-width: 0px;
-      }
-
-      .cls-2 {
-        fill: url(#linear-gradient);
-      }
-
-      .cls-3 {
-        fill: url(#radial-gradient-8);
-      }
-
-      .cls-4 {
-        fill: #05c79d;
-      }
-
-      .cls-5 {
-        fill: #0af5a7;
-      }
-
-      .cls-6 {
-        fill: url(#radial-gradient-2);
-      }
-
-      .cls-7 {
-        fill: url(#radial-gradient-7);
-      }
-
-      .cls-8 {
-        fill: url(#radial-gradient-5);
-      }
-
-      .cls-9 {
-        fill: url(#radial-gradient);
-      }
-
-      .cls-10 {
-        fill: #24047b;
-      }
-
-      .cls-11 {
-        fill: url(#radial-gradient-6);
-      }
-
-      .cls-12 {
-        fill: url(#radial-gradient-3);
-      }
-
-      .cls-13 {
-        fill: url(#radial-gradient-4);
-      }
+      .cls-1 {fill:#0b9496;}
+      .cls-1,.cls-2,.cls-3,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8,.cls-9,.cls-10,.cls-11,.cls-12,.cls-13{stroke-width:0px;}
+      .cls-2 {fill:url(#linear-gradient);}
+      .cls-3 {fill:url(#radial-gradient-8);}
+      .cls-4 {fill:#05c79d;}
+      .cls-5 {fill:#0af5a7;}
+      .cls-6 {fill:url(#radial-gradient-2);}
+      .cls-7 {fill:url(#radial-gradient-7);}
+      .cls-8 {fill:url(#radial-gradient-5);}
+      .cls-9 {fill:url(#radial-gradient);}
+      .cls-10 {fill:#24047b;}
+      .cls-11 {fill:url(#radial-gradient-6);}
+      .cls-12 {fill:url(#radial-gradient-3);}
+      .cls-13 {fill:url(#radial-gradient-4);}
     </style>
     <radialGradient id="radial-gradient" cx="-96.36" cy="466.28" fx="-96.36" fy="466.28" r="1" gradientTransform="translate(-74743.7 83004.25) rotate(51.16) scale(143.54 -236.43) skewX(-3.32)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#4894fe"/>
