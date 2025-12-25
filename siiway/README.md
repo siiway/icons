@@ -1,5 +1,7 @@
 # SiiWay Icon
 
+SiiWay Team 官方图标.
+
 ![icon](./icon.svg) ![icon-light](./icon-light.svg) ![icon-dark](./icon-dark.svg)
 
 ---

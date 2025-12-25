@@ -1,6 +1,6 @@
-# SWDrive Icon
+# Sleepy Icon
 
-SiiWay Drive (SWDrive) 网盘用图标.
+Sleepy Project 项目图标.
 
 ![icon](./icon.svg) ![icon-light](./icon-light.svg) ![icon-dark](./icon-dark.svg)
 
@@ -36,15 +36,9 @@ SiiWay Drive (SWDrive) 网盘用图标.
 - [icon-dark.svg](./icon-dark.svg) - Dark mode source
 - [icon-light.svg](./icon-light.svg) - Light mode source
 - [icon.svg](./icon.svg) - Source
-- [old.svg](./old.svg) - Old version
 
 <!-- AUTO_FILE_LIST_END -->
 
 ---
 
-# From
-
-OneDrive Icon
-
-> *Wikipedia:*
-> 本标志图片仅包含简单的几何图形或文字，没有达到受版权保护所需的原创性门槛，故属于**公有领域**。虽然不受版权保护，本图仍受到其他限制。
+本为 SiIWay Team **原创图标**.

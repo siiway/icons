@@ -17,8 +17,8 @@ Special thanks to [XiaoYuan151](//github.com/XiaoYuan151) for re-drawing SiiWay'
 
 # Resources
 
-- **SVG to PNG Converter**: https://www.freeconvert.com/svg-to-png
-- **Favicon Converter**: https://favicon.io/favicon-converter/
+- **SVG to PNG Converter**: <https://www.freeconvert.com/svg-to-png>
+- **Favicon Converter**: <https://favicon.io/favicon-converter/>
 - HTML 标签配置:
 
 ```html
