@@ -31,15 +31,16 @@ Special thanks to [XiaoYuan151](//github.com/XiaoYuan151) for re-drawing SiiWay'
 
 ## 统一规范
 
-1. 在 SVG 文件顶部添加注释:
+在 SVG 文件顶部添加注释:
 
 ```html
 <?xml version="1.0" encoding="UTF-8"?> <!-- 需要在此行下方, 否则文件将损坏 -->
 <!-- Copyright (c) SiiWay Team, All Rights Reserved - https://icons.siiway.org/path/to/file.svg -->
 ```
 
-2. 使用 `Favicon Converter` 将 SVG 转换为 **不同大小的 PNG + ICO + `Webmanifest`**
-3. 最终提供的颜色和尺寸: **黑色, 白色, 透明** **斜体尺寸放在 favicon 目录*
+使用 `Favicon Converter` 将 SVG 转换为 **不同大小的 PNG + ICO + `Webmanifest`**
+
+最终提供的颜色和尺寸: **黑色, 白色, 透明** **斜体尺寸放在 favicon 目录*
 
 - **透明 SVG**: **`256x256`**
 - **黑色 & 白色 PNG**: **`512x512`, `128x128`, `32x32`**
@@ -69,7 +70,7 @@ uv run ../../.tools/replace_transparent.py black && rm ./*.bak
 cd ..
 ```
 
-4. 在子目录的 README 中添加以下内容, 以便 Actions 自动生成目录树:
+在子目录的 README 中添加以下内容, 以便 Actions 自动生成目录树:
 
 ```md
 <!-- AUTO_FILE_LIST_START -->
@@ -77,7 +78,7 @@ cd ..
 <!-- AUTO_FILE_LIST_END -->
 ```
 
-5. 目录结构示例:
+目录结构示例:
 
 ```bash
 $ tree
