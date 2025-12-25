@@ -34,3 +34,4 @@ jobs:
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions@github.com"
           commit_author: "github-actions[bot] <github-actions@github.com>"
+          add_options: "--glob" # glob support
