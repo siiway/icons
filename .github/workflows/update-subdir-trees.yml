@@ -22,9 +22,6 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Install tree
-        run: sudo apt-get update && sudo apt-get install -y tree
-
       - name: Update subdirectory README trees
         run: |
           python .tools/update_trees.py
