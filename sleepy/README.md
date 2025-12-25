@@ -36,6 +36,7 @@ Sleepy Project 项目图标.
 - [icon-dark.svg](./icon-dark.svg) - Dark mode source
 - [icon-light.svg](./icon-light.svg) - Light mode source
 - [icon.svg](./icon.svg) - Source
+- [old.svg](./old.svg) - Old version
 
 <!-- AUTO_FILE_LIST_END -->
 
