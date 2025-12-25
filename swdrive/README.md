@@ -31,6 +31,8 @@
   - [favicon-32x32.png](./favicon-light/favicon-32x32.png) - 32x32
   - [favicon.ico](./favicon-light/favicon.ico) - 48x48
   - [site.webmanifest](./favicon-light/site.webmanifest) - Webmanifest config file
+- [icon-dark.svg](./icon-dark.svg) - Dark mode source
+- [icon-light.svg](./icon-light.svg) - Light mode source
 - [icon.svg](./icon.svg) - Source
 - [old.svg](./old.svg) - Old version
 
