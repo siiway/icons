@@ -40,11 +40,10 @@ Special thanks to [XiaoYuan151](//github.com/XiaoYuan151) for re-drawing SiiWay'
 
 使用 `Favicon Converter` 将 SVG 转换为 **不同大小的 PNG + ICO + `Webmanifest`**
 
-最终提供的颜色和尺寸: **黑色, 白色, 透明** **斜体尺寸放在 favicon 目录*
+最终提供的颜色和尺寸:  *(*斜体尺寸放在 favicon 目录)*
 
 - **透明 SVG**: **`256x256`**
-- **黑色 & 白色 PNG**: **`512x512`, `128x128`, `32x32`**
-- *透明 PNG*: **`512x512`, `192x192`, `180x180`, `32x32`, `16x16`**
+- *黑色 & 白色 & 透明 PNG*: `512x512`, `192x192`, `180x180`, `32x32`, `16x16`
 - *透明 ICO*: `48x48`
 - SVG 更改图标尺寸方式:
 
