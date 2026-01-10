@@ -1,4 +1,4 @@
-Copyright (c) 2025 SiiWay Team. All Rights Reserved.
+Copyright (c) 2026 SiiWay Team. All Rights Reserved.
 
 以下为 SiiWay 原创作品, 拥有所有权利 (All Rights):
 
