@@ -8,8 +8,8 @@ Sleepy Project 项目图标.
 
 <!-- AUTO_FILE_LIST_START -->
 
-- [README.md](./README.md) *(2.4K)*
-- [**favicon/**](./favicon/)
+- [README.md](./README.md) *(2.4K)* - **Directory README**
+- **favicon/**
   - [android-chrome-192x192.png](./favicon/android-chrome-192x192.png) *(11.0K)* - **192x192**
   - [android-chrome-512x512.png](./favicon/android-chrome-512x512.png) *(39.9K)* - **512x512**
   - [apple-touch-icon.png](./favicon/apple-touch-icon.png) *(10.3K)* - **180x180**
@@ -17,7 +17,7 @@ Sleepy Project 项目图标.
   - [favicon-32x32.png](./favicon/favicon-32x32.png) *(1.2K)* - **32x32**
   - [favicon.ico](./favicon/favicon.ico) *(15.0K)* - **48x48**
   - [site.webmanifest](./favicon/site.webmanifest) *(263B)* - **Webmanifest config file**
-- [**favicon-dark/**](./favicon-dark/)
+- **favicon-dark/**
   - [android-chrome-192x192.png](./favicon-dark/android-chrome-192x192.png) *(8.5K)* - **192x192**
   - [android-chrome-512x512.png](./favicon-dark/android-chrome-512x512.png) *(26.5K)* - **512x512**
   - [apple-touch-icon.png](./favicon-dark/apple-touch-icon.png) *(8.2K)* - **180x180**
@@ -25,7 +25,7 @@ Sleepy Project 项目图标.
   - [favicon-32x32.png](./favicon-dark/favicon-32x32.png) *(1.2K)* - **32x32**
   - [favicon.ico](./favicon-dark/favicon.ico) *(1.9K)* - **48x48**
   - [site.webmanifest](./favicon-dark/site.webmanifest) *(263B)* - **Webmanifest config file**
-- [**favicon-light/**](./favicon-light/)
+- **favicon-light/**
   - [android-chrome-192x192.png](./favicon-light/android-chrome-192x192.png) *(8.5K)* - **192x192**
   - [android-chrome-512x512.png](./favicon-light/android-chrome-512x512.png) *(26.2K)* - **512x512**
   - [apple-touch-icon.png](./favicon-light/apple-touch-icon.png) *(8.2K)* - **180x180**

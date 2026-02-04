@@ -8,8 +8,8 @@ SiiWay Team 官方图标.
 
 <!-- AUTO_FILE_LIST_START -->
 
-- [README.md](./README.md) *(2.3K)*
-- [**favicon/**](./favicon/)
+- [README.md](./README.md) *(2.3K)* - **Directory README**
+- **favicon/**
   - [android-chrome-192x192.png](./favicon/android-chrome-192x192.png) *(10.5K)* - **192x192**
   - [android-chrome-512x512.png](./favicon/android-chrome-512x512.png) *(44.9K)* - **512x512**
   - [apple-touch-icon.png](./favicon/apple-touch-icon.png) *(9.4K)* - **180x180**
@@ -17,7 +17,7 @@ SiiWay Team 官方图标.
   - [favicon-32x32.png](./favicon/favicon-32x32.png) *(1.1K)* - **32x32**
   - [favicon.ico](./favicon/favicon.ico) *(15.0K)* - **48x48**
   - [site.webmanifest](./favicon/site.webmanifest) *(263B)* - **Webmanifest config file**
-- [**favicon-dark/**](./favicon-dark/)
+- **favicon-dark/**
   - [android-chrome-192x192.png](./favicon-dark/android-chrome-192x192.png) *(7.9K)* - **192x192**
   - [android-chrome-512x512.png](./favicon-dark/android-chrome-512x512.png) *(28.4K)* - **512x512**
   - [apple-touch-icon.png](./favicon-dark/apple-touch-icon.png) *(7.2K)* - **180x180**
@@ -25,7 +25,7 @@ SiiWay Team 官方图标.
   - [favicon-32x32.png](./favicon-dark/favicon-32x32.png) *(1022B)* - **32x32**
   - [favicon.ico](./favicon-dark/favicon.ico) *(1.6K)* - **48x48**
   - [site.webmanifest](./favicon-dark/site.webmanifest) *(263B)* - **Webmanifest config file**
-- [**favicon-light/**](./favicon-light/)
+- **favicon-light/**
   - [android-chrome-192x192.png](./favicon-light/android-chrome-192x192.png) *(9.3K)* - **192x192**
   - [android-chrome-512x512.png](./favicon-light/android-chrome-512x512.png) *(33.7K)* - **512x512**
   - [apple-touch-icon.png](./favicon-light/apple-touch-icon.png) *(8.4K)* - **180x180**

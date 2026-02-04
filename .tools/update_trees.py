@@ -1,26 +1,33 @@
 import os
 import re
+import yaml  # 新增这一行
 
 # 配置区
 START_MARKER = "<!-- AUTO_FILE_LIST_START -->"
 END_MARKER = "<!-- AUTO_FILE_LIST_END -->"
 TREE_CMD = ["tree", "--noreport", "-v", "-a", "."]  # -a 显示隐藏文件，可去掉
 
-# 文件名 -> 描述映射
-FILE_DESCRIPTIONS = {
-    "android-chrome-512x512.png": "512x512",
-    "android-chrome-192x192.png": "192x192",
-    "apple-touch-icon.png": "180x180",
-    "favicon-32x32.png": "32x32",
-    "favicon-16x16.png": "16x16",
-    "favicon.ico": "48x48",
-    "site.webmanifest": "Webmanifest config file",
-    "icon.svg": "Source",
-    "icon-light.svg": "Light mode source",
-    "icon-dark.svg": "Dark mode source",
-    "old.svg": "Old version",
-    # 添加更多...
-}
+# 改为从 types.yaml 加载（原 FILE_DESCRIPTIONS 移除）
+
+
+def get_descriptions():
+    try:
+        with open("types.yaml", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+        if isinstance(data, dict):
+            return data
+        else:
+            print("types.yaml 格式错误，应为键值对字典，已使用空映射")
+            return {}
+    except FileNotFoundError:
+        print("未找到 types.yaml，使用空描述映射")
+        return {}
+    except Exception as e:
+        print(f"加载 types.yaml 失败: {e}，使用空描述映射")
+        return {}
+
+
+FILE_DESCRIPTIONS = get_descriptions()  # 在这里加载
 
 
 def human_readable_size(size_bytes):
@@ -50,14 +57,15 @@ def generate_markdown_list(dir_path):
             continue
 
         if os.path.isdir(item_path):
-            # 子目录：加粗 + 链接（目录暂不显示大小）
-            lines.append(f"- [**{item}/**](./{item}/)")
+            # 子目录：加粗 ~~+ 链接~~ 不加链接，会 404
+            # lines.append(f"- [**{item}/**](./{item}/)")
+            lines.append(f"- **{item}/**")
             # 递归添加子目录内容（缩进）
             sub_items = sorted(os.listdir(item_path))
             for sub_item in sub_items:
                 sub_rel = os.path.join(item, sub_item)
                 sub_path = os.path.join(item_path, sub_item)
-                
+
                 if os.path.isdir(sub_path):
                     lines.append(f"  - [**{sub_item}/**](./{sub_rel}/)")
                 else:
