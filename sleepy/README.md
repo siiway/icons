@@ -8,7 +8,7 @@ Sleepy Project 项目图标.
 
 <!-- AUTO_FILE_LIST_START -->
 
-- [README.md](./README.md) *(2.4K)* - **Directory README**
+- [README.md](./README.md) *(2.3K)* - **Directory README**
 - **favicon/**
   - [android-chrome-192x192.png](./favicon/android-chrome-192x192.png) *(11.0K)* - **192x192**
   - [android-chrome-512x512.png](./favicon/android-chrome-512x512.png) *(39.9K)* - **512x512**

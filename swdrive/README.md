@@ -8,7 +8,7 @@ SiiWay Drive (SWDrive) 网盘用图标.
 
 <!-- AUTO_FILE_LIST_START -->
 
-- [README.md](./README.md) *(2.6K)* - **Directory README**
+- [README.md](./README.md) *(2.5K)* - **Directory README**
 - **favicon/**
   - [android-chrome-192x192.png](./favicon/android-chrome-192x192.png) *(30.8K)* - **192x192**
   - [android-chrome-512x512.png](./favicon/android-chrome-512x512.png) *(139.4K)* - **512x512**
