@@ -24,6 +24,7 @@ jobs:
 
       - name: Update subdirectory README trees
         run: |
+          pip install pyyaml
           python .tools/update_trees.py
 
       - name: Commit and push if changed

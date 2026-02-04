@@ -12,4 +12,4 @@ icon-light.svg: "Light mode source"
 icon-dark.svg: "Dark mode source"
 old.svg: "Old version"
 
-README.md: Directory README
+README.md: "Directory README"
