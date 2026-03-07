@@ -12,9 +12,9 @@ The official siiway icons provided by [XiaoYuan151](//github.com/XiaoYuan151), [
 
 Special thanks to [XiaoYuan151](//github.com/XiaoYuan151) for re-drawing SiiWay's SVG icons!
 
-**版权所有 (c) 2026 SiiWay Team. 保留所有权利.**
+**除特殊说明外，版权所有 (c) 2026 SiiWay Team. 保留所有权利.**
 
-**Copyright (c) 2026 SiiWay Team. All Rights Reserved.**
+**Except where otherwise specified, Copyright (c) 2026 SiiWay Team. All rights reserved.**
 
 # Resources
 
