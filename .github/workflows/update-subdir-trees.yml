@@ -28,7 +28,9 @@ jobs:
           python .tools/update_trees.py
 
       - name: Commit and push if changed
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: iarekylew00t/verified-bot-commit@v2
         with:
-          commit_message: "[ci] auto update directory trees in subdir READMEs | 自动更新子目录 README 中的目录树"
-          file_pattern: "*/README.md" # idc
+          message: "[ci] auto update directory trees in subdir READMEs | 自动更新子目录 README 中的目录树"
+          files: "*/README.md" # idc
+          if-no-commit: "notice"
+          max-retries: 2
