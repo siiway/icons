@@ -8,7 +8,7 @@ Prism 图标。
 
 <!-- AUTO_FILE_LIST_START -->
 
-- [README.md](./README.md) *(352B)* - **Directory README**
+- [README.md](./README.md) *(460B)* - **Directory README**
 - [icon.svg](./icon.svg) *(2.6K)* - **Source**
 
 <!-- AUTO_FILE_LIST_END -->
