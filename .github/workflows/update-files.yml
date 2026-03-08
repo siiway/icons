@@ -74,6 +74,6 @@ jobs:
       uses: IAreKyleW00t/verified-bot-commit@v2
       with:
         message: "[ci] update readme and icons"
-        files: "*"
+        files: "**"
         if-no-commit: "notice"
         max-retries: 2
