@@ -5,7 +5,12 @@ on:
     branches:
     - main
   workflow_dispatch:
-
+    inputs:
+      debug:
+        description: "Enable icon_gen debug mode"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -13,6 +18,9 @@ permissions:
 jobs:
   update-trees:
     runs-on: ubuntu-latest
+    env:
+      DEBUG_FLAG: ${{ github.event.inputs.debug == 'true' && '-d' || '' }}
+
     steps:
     - uses: actions/checkout@v4
       with:
@@ -34,6 +42,9 @@ jobs:
     - name: Update subdirectory README lists and generate icons via icon_gen
       run: |
         set -euo pipefail
+
+        echo "Debug flag: ${DEBUG_FLAG:-<none>}"
+
         find . -mindepth 2 -type f -name "README.md" | while read -r readme; do
           dir="$(dirname "$readme")"
           input_svg="$dir/icon.svg"
@@ -43,14 +54,17 @@ jobs:
           fi
 
           echo "Updating $readme"
+
           if grep -q "AUTO_FILE_LIST_START" "$readme"; then
             icon_gen \
+              ${DEBUG_FLAG:-} \
               -i "$input_svg" \
               -o "$dir" \
               --input-markdown "$readme" \
               --output-markdown "$readme"
           else
             icon_gen \
+              ${DEBUG_FLAG:-} \
               -i "$input_svg" \
               -o "$dir"
           fi
