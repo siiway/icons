@@ -1,0 +1,63 @@
+name: Update Files
+
+on:
+  push:
+    branches:
+    - main
+  workflow_dispatch:
+
+
+permissions:
+  contents: write
+
+jobs:
+  update-trees:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+
+    - name: Install icon_gen
+      run: |
+        set -euo pipefail
+        RELEASE_JSON="$(curl -fsSL https://api.github.com/repos/siiway/icon_gen/releases/latest)"
+        ASSET_URL="$(printf '%s' "$RELEASE_JSON" | jq -r '.assets[] | select(.name == "icon_gen") | .browser_download_url')"
+        if [ -z "$ASSET_URL" ] || [ "$ASSET_URL" = "null" ]; then
+          echo "Could not find 'icon_gen' asset in latest release"
+          exit 1
+        fi
+        curl -fsSL "$ASSET_URL" -o /usr/local/bin/icon_gen
+        chmod +x /usr/local/bin/icon_gen
+        icon_gen --help > /dev/null
+
+    - name: Update subdirectory README lists and generate icons via icon_gen
+      run: |
+        set -euo pipefail
+        find . -mindepth 2 -type f -name "README.md" | while read -r readme; do
+          dir="$(dirname "$readme")"
+          input_svg="$dir/icon.svg"
+
+          if [ ! -f "$input_svg" ]; then
+            continue
+          fi
+
+          echo "Updating $readme"
+          if grep -q "AUTO_FILE_LIST_START" "$readme"; then
+            icon_gen \
+              -i "$input_svg" \
+              -o "$dir" \
+              --input-markdown "$readme" \
+              --output-markdown "$readme"
+          else
+            icon_gen \
+              -i "$input_svg" \
+              -o "$dir"
+          fi
+        done
+
+    - name: Commit and push if changed
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "[ci] update readme and icons"
+        file_pattern: "*/README.md"
