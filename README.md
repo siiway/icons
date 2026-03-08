@@ -1,8 +1,8 @@
 # SiiWay Icons
 
-SiiWay 官方图标库，由 [XiaoYuan151](//github.com/XiaoYuan151), [xhc861](//github.com/xhc861) 和 [wyf9](//github.com/wyf9) 提供.
+SiiWay 官方图标库，由 [XiaoYuan151](//github.com/XiaoYuan151), [xhc861](//github.com/xhc861), [wyf9](//github.com/wyf9) 和 [NtKrnl32](//github.com/ntkrnl32) 提供.
 
-The official siiway icons provided by [XiaoYuan151](//github.com/XiaoYuan151), [xhc861](//github.com/xhc861) and [wyf9](//github.com/wyf9).
+The official siiway icons provided by [XiaoYuan151](//github.com/XiaoYuan151), [xhc861](//github.com/xhc861), [wyf9](//github.com/wyf9) and [NtKrnl32](//github.com/ntkrnl32).
 
 - **[SiiWay Icon](./siiway/)**
 - **[SWDrive](./swdrive/)**
@@ -13,9 +13,9 @@ The official siiway icons provided by [XiaoYuan151](//github.com/XiaoYuan151), [
 
 Special thanks to [XiaoYuan151](//github.com/XiaoYuan151) for re-drawing SiiWay's SVG icons!
 
-**除特殊说明外，版权所有 (c) 2026 SiiWay Team. 保留所有权利.**
+**除特殊说明外，[版权所有 (c) 2026 SiiWay Team. 保留所有权利](./LICENSE.md).**
 
-**Except where otherwise specified, Copyright (c) 2026 SiiWay Team. All rights reserved.**
+**Except where otherwise specified, [Copyright (c) 2026 SiiWay Team. All rights reserved](./LICENSE.md).**
 
 # Resources
 
@@ -43,13 +43,13 @@ Special thanks to [XiaoYuan151](//github.com/XiaoYuan151) for re-drawing SiiWay'
 
 最终提供的颜色和尺寸:  *(*斜体尺寸放在 favicon 目录)*
 
-- **透明 SVG**: **`256x256`**
+- **透明 SVG**: **`512x512`**
 - *黑色 & 白色 & 透明 PNG*: `512x512`, `192x192`, `180x180`, `32x32`, `16x16`
 - *透明 ICO*: `48x48`
 - SVG 更改图标尺寸方式:
 
 ```html
-<svg width="256" height="256" xmlns="http://www.w3.org/2000/svg"> <!-- 给 svg 元素增加 width 和 height 属性 (须在 defs 外) -->
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg"> <!-- 给 svg 元素增加 width 和 height 属性 (须在 defs 外) -->
 ```
 
 - SVG 添加背景色方式:
