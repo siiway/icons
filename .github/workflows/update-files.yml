@@ -57,7 +57,9 @@ jobs:
         done
 
     - name: Commit and push if changed
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: IAreKyleW00t/verified-bot-commit@v2
       with:
-        commit_message: "[ci] update readme and icons"
-        file_pattern: "*/README.md"
+        message: "[ci] update readme and icons"
+        files: "*"
+        if-no-commit: "notice"
+        max-retries: 2
