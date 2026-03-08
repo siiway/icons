@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (c) SiiWay Team, All Rights Reserved - https://icons.siiway.org/sleepy/icon-light.svg -->
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 201.85 201.12">
+<!-- Copyright (c) SiiWay Team, All Rights Reserved - https://icons.siiway.org/sleepy/icon.svg -->
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 201.85 201.12"><rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
   <defs>
     <style>
       .cls-1 {
@@ -1132,7 +1132,6 @@
       }
     </style>
   </defs>
-  <rect width="100%" height="100%" fill="white" />
   <rect class="cls-154" y="21.85" width="194.35" height="142.92" rx="11.92" ry="11.92"/>
   <rect class="cls-34" x="45.44" y="180.66" width="103.5" height="20.46" rx="5.5" ry="5.5"/>
   <g>
