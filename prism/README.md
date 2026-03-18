@@ -8,6 +8,30 @@ Prism 图标。
 
 <!-- AUTO_FILE_LIST_START -->
 
+- **border/**
+  - [android-chrome-192x192.png](./border/android-chrome-192x192.png) *(13.7K)* - **192x192**
+  - [android-chrome-512x512.png](./border/android-chrome-512x512.png) *(58.8K)* - **512x512**
+  - [apple-touch-icon.png](./border/apple-touch-icon.png) *(12.5K)* - **180x180**
+  - [favicon-16x16.png](./border/favicon-16x16.png) *(479B)* - **16x16**
+  - [favicon-32x32.png](./border/favicon-32x32.png) *(1K)* - **32x32**
+  - [favicon.ico](./border/favicon.ico) *(3.6K)* - **48x48**
+  - [site.webmanifest](./border/site.webmanifest) *(426B)* - **Webmanifest config file**
+- **border-dark/**
+  - [android-chrome-192x192.png](./border-dark/android-chrome-192x192.png) *(14.1K)* - **192x192**
+  - [android-chrome-512x512.png](./border-dark/android-chrome-512x512.png) *(59.7K)* - **512x512**
+  - [apple-touch-icon.png](./border-dark/apple-touch-icon.png) *(12.8K)* - **180x180**
+  - [favicon-16x16.png](./border-dark/favicon-16x16.png) *(484B)* - **16x16**
+  - [favicon-32x32.png](./border-dark/favicon-32x32.png) *(1K)* - **32x32**
+  - [favicon.ico](./border-dark/favicon.ico) *(10.2K)* - **48x48**
+  - [site.webmanifest](./border-dark/site.webmanifest) *(426B)* - **Webmanifest config file**
+- **border-light/**
+  - [android-chrome-192x192.png](./border-light/android-chrome-192x192.png) *(13.9K)* - **192x192**
+  - [android-chrome-512x512.png](./border-light/android-chrome-512x512.png) *(59.4K)* - **512x512**
+  - [apple-touch-icon.png](./border-light/apple-touch-icon.png) *(12.7K)* - **180x180**
+  - [favicon-16x16.png](./border-light/favicon-16x16.png) *(475B)* - **16x16**
+  - [favicon-32x32.png](./border-light/favicon-32x32.png) *(1K)* - **32x32**
+  - [favicon.ico](./border-light/favicon.ico) *(10.2K)* - **48x48**
+  - [site.webmanifest](./border-light/site.webmanifest) *(426B)* - **Webmanifest config file**
 - **favicon/**
   - [android-chrome-192x192.png](./favicon/android-chrome-192x192.png) *(20.9K)* - **192x192**
   - [android-chrome-512x512.png](./favicon/android-chrome-512x512.png) *(84.3K)* - **512x512**
@@ -32,7 +56,10 @@ Prism 图标。
   - [favicon-32x32.png](./favicon-light/favicon-32x32.png) *(1.5K)* - **32x32**
   - [favicon.ico](./favicon-light/favicon.ico) *(11.2K)* - **48x48**
   - [site.webmanifest](./favicon-light/site.webmanifest) *(426B)* - **Webmanifest config file**
-- [README.md](./README.md) *(352B)*
+- [README.md](./README.md) *(2.4K)*
+- [border-dark.svg](./border-dark.svg) *(2.7K)* - **Dark mode source with border**
+- [border-light.svg](./border-light.svg) *(2.7K)* - **Light mode source with border**
+- [border.svg](./border.svg) *(2.6K)* - **Source with border**
 - [icon-dark.svg](./icon-dark.svg) *(2.7K)* - **Dark mode source**
 - [icon-light.svg](./icon-light.svg) *(2.7K)* - **Light mode source**
 - [icon.svg](./icon.svg) *(2.6K)* - **Source**
