@@ -56,7 +56,7 @@ SiiWay Drive (SWDrive) 网盘用图标.
   - [favicon-32x32.png](./favicon-light/favicon-32x32.png) *(2.1K)* - **32x32**
   - [favicon.ico](./favicon-light/favicon.ico) *(6.7K)* - **48x48**
   - [site.webmanifest](./favicon-light/site.webmanifest) *(426B)* - **Webmanifest config file**
-- [README.md](./README.md) *(2.5K)*
+- [README.md](./README.md) *(4.5K)*
 - [border-dark.svg](./border-dark.svg) *(9.5K)* - **Dark mode source with border**
 - [border-light.svg](./border-light.svg) *(9.5K)* - **Light mode source with border**
 - [border.svg](./border.svg) *(9.4K)* - **Source with border**
