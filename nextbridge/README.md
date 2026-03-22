@@ -56,7 +56,7 @@ NextBridge 图标。
   - [favicon-32x32.png](./favicon-light/favicon-32x32.png) *(1.5K)* - **32x32**
   - [favicon.ico](./favicon-light/favicon.ico) *(11.2K)* - **48x48**
   - [site.webmanifest](./favicon-light/site.webmanifest) *(426B)* - **Webmanifest config file**
-- [README.md](./README.md) *(406B)*
+- [README.md](./README.md) *(4.4K)*
 - [border-dark.svg](./border-dark.svg) *(6.9K)* - **Dark mode source with border**
 - [border-light.svg](./border-light.svg) *(6.9K)* - **Light mode source with border**
 - [border.svg](./border.svg) *(6.8K)* - **Source with border**
