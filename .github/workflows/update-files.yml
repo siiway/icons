@@ -71,7 +71,7 @@ jobs:
         done
 
     - name: Commit and push if changed
-      uses: IAreKyleW00t/verified-bot-commit@v2
+      uses: siiway/verified_bot_commit@v0.1.0
       with:
         message: "[ci] update readme and icons"
         files: "**"
