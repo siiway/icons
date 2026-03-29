@@ -10,6 +10,7 @@ The official siiway icons provided by [XiaoYuan151](//github.com/XiaoYuan151), [
 - **[Prism](./prism/)**
 - **[Glint](./glint/)**
 - **[NextBridge](./nextbridge/)**
+- **[SiiWay CLI](./cli/)**
 
 特别感谢 [XiaoYuan151](//github.com/XiaoYuan151) 对 SiiWay SVG 图标的重绘!
 
