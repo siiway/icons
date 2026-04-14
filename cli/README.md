@@ -56,7 +56,7 @@ SiiWay CLI 图标。
   - [favicon-32x32.png](./favicon-light/favicon-32x32.png) *(1.8K)* - **32x32**
   - [favicon.ico](./favicon-light/favicon.ico) *(6.7K)* - **48x48**
   - [site.webmanifest](./favicon-light/site.webmanifest) *(426B)* - **Webmanifest config file**
-- [README.md](./README.md) *(340B)*
+- [README.md](./README.md) *(4.4K)*
 - [border-dark.svg](./border-dark.svg) *(5.7K)* - **Dark mode source with border**
 - [border-light.svg](./border-light.svg) *(5.7K)* - **Light mode source with border**
 - [border.svg](./border.svg) *(5.6K)* - **Source with border**
