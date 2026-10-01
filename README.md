@@ -55,23 +55,3 @@ bun run generate
 ```
 
 所有衍生的各种尺寸 PNG、ICO 及亮/暗色背景图标将在构建阶段通过 CI 自动化处理，仓库中仅需维护透明矢量 SVG 源文件。
-
-│   ├── favicon-16x16.png
-│   ├── favicon-32x32.png
-│   ├── favicon.ico
-│   └── site.webmanifest
-├── favicon-light
-│   ├── android-chrome-192x192.png
-│   ├── android-chrome-512x512.png
-│   ├── apple-touch-icon.png
-│   ├── favicon-16x16.png
-│   ├── favicon-32x32.png
-│   ├── favicon.ico
-│   └── site.webmanifest
-├── icon-dark.svg
-├── icon-light.svg
-├── icon.svg
-└── README.md
-
-4 directories, 25 files
-```
