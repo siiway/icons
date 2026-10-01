@@ -218,7 +218,7 @@ async function copyRawSvg() {
         <!-- Usage HTML Snippet -->
         <section>
           <div class="mb-3 flex items-center justify-between">
-            <h3 class="text-sm font-medium text-zinc-500 dark:text-zinc-400">{{ t('drawer.copySnippet') }}</h3>
+            <h3 class="text-sm font-medium text-zinc-500 dark:text-zinc-400">{{ t('drawer.snippet') }}</h3>
             <UButton variant="ghost" size="xs" @click="copySnippet">
               {{ copiedSnippet ? t('common.copied') : t('drawer.copySnippet') }}
             </UButton>
