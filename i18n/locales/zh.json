@@ -1,0 +1,41 @@
+{
+  "common": {
+    "skipToContent": "跳到主内容",
+    "switchToLight": "切换到浅色",
+    "switchToDark": "切换到深色",
+    "rights": "保留所有权利。",
+    "close": "关闭",
+    "download": "下载",
+    "copied": "已复制",
+    "language": "语言"
+  },
+  "meta": {
+    "title": "{name} — 图标库"
+  },
+  "home": {
+    "heading": "图标库",
+    "empty": "该分组暂无品牌。"
+  },
+  "drawer": {
+    "bgChecker": "透明",
+    "bgLight": "浅色",
+    "bgDark": "深色",
+    "snippetComment": "<!-- {name} 图标 -->",
+    "preview": "预览",
+    "sizes": "尺寸",
+    "vectorSvg": "矢量 SVG 代码",
+    "downloadSvg": "下载 SVG",
+    "copySnippet": "复制引用代码",
+    "copyRawSvg": "复制源 SVG 内容",
+    "rawSvgTitle": "原始 SVG 内容 (含版权声明)",
+    "lockups": "带文字图标",
+    "extras": "其他资源",
+    "copyrightTitle": "版权与授权信息",
+    "copyrightOwner": "版权所有者",
+    "copyrightLicense": "授权许可协议",
+    "copyrightAuthor": "设计作者",
+    "originalBadge": "原创作品",
+    "modifiedBadge": "第三方 / 派生作品",
+    "viewLicense": "查看许可协议"
+  }
+}

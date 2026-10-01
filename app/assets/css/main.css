@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.checkerboard {
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #d4d4d8 25%, transparent 25%),
+    linear-gradient(-45deg, #d4d4d8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #d4d4d8 75%),
+    linear-gradient(-45deg, transparent 75%, #d4d4d8 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+}
+
+.dark .checkerboard {
+  background-color: #18181b;
+  background-image:
+    linear-gradient(45deg, #3f3f46 25%, transparent 25%),
+    linear-gradient(-45deg, #3f3f46 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #3f3f46 75%),
+    linear-gradient(-45deg, transparent 75%, #3f3f46 75%);
+}

@@ -1,1 +1,23 @@
+# Nuxt & Node
+.nuxt
+.output
+dist
+node_modules
+*.log
+.env
+.env.*
+
+# Generated icon outputs in public (only keep public/CNAME and public/favicon.ico)
+public/brand/
+
+# Tools & caches
+.tools/.venv
+__pycache__/
+*.pyc
+
+# Archives
 /archive.tar.gz
+
+# OS & Editor
+.DS_Store
+Thumbs.db

@@ -1,0 +1,81 @@
+name: Build and Deploy Showcase
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install icon_gen
+        run: |
+          set -euo pipefail
+          RELEASE_JSON="$(curl -fsSL https://api.github.com/repos/siiway/icon_gen/releases/latest)"
+          ASSET_URL="$(printf '%s' "$RELEASE_JSON" | jq -r '.assets[] | select(.name == "icon_gen") | .browser_download_url')"
+          if [ -n "$ASSET_URL" ] && [ "$ASSET_URL" != "null" ]; then
+            curl -fsSL "$ASSET_URL" -o /usr/local/bin/icon_gen
+            chmod +x /usr/local/bin/icon_gen
+            echo "icon_gen installed successfully"
+          else
+            echo "icon_gen asset not found, skipping generation step"
+          fi
+
+      - name: Run prepare-icons script
+        run: bun run prepare-icons
+
+      - name: Generate derivatives via icon_gen into public/brand
+        run: |
+          set -euo pipefail
+          if command -v icon_gen >/dev/null 2>&1; then
+            for icon_file in icons/*/icon.svg; do
+              [ -f "$icon_file" ] || continue
+              brand_dir="$(dirname "$icon_file")"
+              brand_name="$(basename "$brand_dir")"
+              out_dir="public/brand/$brand_name"
+              mkdir -p "$out_dir"
+              echo "Generating icon variants for $brand_name..."
+              icon_gen -i "$icon_file" -o "$out_dir" || true
+            done
+          fi
+
+      - name: Build static site
+        run: bun run generate
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .output/public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
