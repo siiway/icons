@@ -41,29 +41,10 @@ jobs:
               -o /usr/local/bin/icon_gen
             chmod +x /usr/local/bin/icon_gen
             echo "icon_gen installed successfully"
-          else
-            echo "icon_gen asset not found, skipping generation step"
+            icon_gen --help
           fi
 
-      - name: Run prepare-icons script
-        run: bun run prepare-icons
-
-      - name: Generate derivatives via icon_gen into public/brand
-        run: |
-          set -euo pipefail
-          if command -v icon_gen >/dev/null 2>&1; then
-            for icon_file in icons/*/icon.svg; do
-              [ -f "$icon_file" ] || continue
-              brand_dir="$(dirname "$icon_file")"
-              brand_name="$(basename "$brand_dir")"
-              out_dir="public/brand/$brand_name"
-              mkdir -p "$out_dir"
-              echo "Generating icon variants for $brand_name..."
-              icon_gen -i "$icon_file" -o "$out_dir" || true
-            done
-          fi
-
-      - name: Build static site
+      - name: Build and generate static site
         run: bun run generate
 
       - name: Upload Pages artifact

@@ -8,10 +8,13 @@ node_modules
 .env.*
 
 # Generated icon outputs in public (only keep public/CNAME and public/favicon.ico)
-public/brand/
+public/*
+!public/CNAME
+!public/favicon.ico
 
 # Tools & caches
 .tools/.venv
+.tools/bin/
 __pycache__/
 *.pyc
 

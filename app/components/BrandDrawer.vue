@@ -35,6 +35,13 @@ function fileName(url: string, base: string) {
   return `${base}${url.slice(url.lastIndexOf('.'))}`
 }
 
+function absoluteUrl(path: string): string {
+  if (!path) return ''
+  if (path.startsWith('http://') || path.startsWith('https://')) return path
+  const base = siteConfig.ogUrl.replace(/\/$/, '')
+  return `${base}${path.startsWith('/') ? '' : '/'}${path}`
+}
+
 const rawSvgContent = ref('')
 const loadingSvg = ref(false)
 
@@ -63,11 +70,28 @@ watch(
   { immediate: true },
 )
 
+const displaySvgContent = computed(() => {
+  if (!rawSvgContent.value || !props.brand) return rawSvgContent.value
+  let text = rawSvgContent.value
+  // If the SVG doesn't have a copyright comment right after <svg>, ensure it is present
+  if (!text.includes('<!-- Copyright') && !text.includes('<!--Copyright')) {
+    const notice = props.brand.copyright?.owner
+      ? `<!-- Copyright (c) ${props.brand.copyright.owner} (${props.brand.copyright.license}) - ${siteConfig.ogUrl}/brand/${props.brand.id}/icon.svg -->`
+      : `<!-- Copyright (c) SiiWay Team - ${siteConfig.ogUrl}/brand/${props.brand.id}/icon.svg -->`
+    const svgMatch = text.match(/<svg\b[^>]*>/i)
+    if (svgMatch && svgMatch.index !== undefined) {
+      const pos = svgMatch.index + svgMatch[0].length
+      text = text.slice(0, pos) + '\n  ' + notice + text.slice(pos)
+    }
+  }
+  return text
+})
+
 const snippet = computed(() => {
   const b = props.brand
   if (!b) return ''
-  const svg = iconUrl()
-  const png = b.icon.sizes.includes(256) ? iconUrl(256) : svg
+  const svg = absoluteUrl(iconUrl())
+  const png = b.icon.sizes.includes(256) ? absoluteUrl(iconUrl(256)) : svg
   return `<!-- ${t('drawer.snippetComment', { name: b.name })} -->
 <picture>
   <source srcset="${svg}" type="image/svg+xml" />
@@ -98,7 +122,7 @@ async function copySnippet() {
 
 async function copyRawSvg() {
   try {
-    await navigator.clipboard.writeText(rawSvgContent.value)
+    await navigator.clipboard.writeText(displaySvgContent.value)
     copiedRawSvg.value = true
     setTimeout(() => (copiedRawSvg.value = false), 1500)
   } catch {
@@ -186,10 +210,8 @@ async function copyRawSvg() {
               </UButton>
             </div>
           </div>
-          <div class="relative">
-            <pre
-              class="max-h-56 overflow-auto rounded-lg bg-zinc-950 p-4 font-mono text-xs text-zinc-200 border border-zinc-800 selection:bg-primary-500/30"
-            ><code>{{ rawSvgContent }}</code></pre>
+          <div class="rounded-xl border border-zinc-800 bg-zinc-950 p-4">
+            <pre class="max-h-56 overflow-auto font-mono text-xs text-zinc-200 selection:bg-primary-500/30"><code>{{ displaySvgContent }}</code></pre>
           </div>
         </section>
 
@@ -198,12 +220,12 @@ async function copyRawSvg() {
           <div class="mb-3 flex items-center justify-between">
             <h3 class="text-sm font-medium text-zinc-500 dark:text-zinc-400">{{ t('drawer.copySnippet') }}</h3>
             <UButton variant="ghost" size="xs" @click="copySnippet">
-              {{ copiedSnippet ? t('common.copied') : t('common.download') ? t('drawer.copySnippet') : 'Copy' }}
+              {{ copiedSnippet ? t('common.copied') : t('drawer.copySnippet') }}
             </UButton>
           </div>
-          <pre
-            class="overflow-x-auto rounded-lg bg-zinc-100 p-4 text-xs dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700"
-          ><code>{{ snippet }}</code></pre>
+          <div class="rounded-xl border border-zinc-800 bg-zinc-950 p-4">
+            <pre class="overflow-x-auto font-mono text-xs text-zinc-200 selection:bg-primary-500/30"><code>{{ snippet }}</code></pre>
+          </div>
         </section>
 
         <!-- Sizes Section -->
@@ -222,6 +244,7 @@ async function copyRawSvg() {
                   :height="Math.min(s, 64)"
                   class="max-h-14 max-w-14 object-contain"
                   :alt="`icon-${s}`"
+                  @error="(e) => ((e.target as HTMLImageElement).src = iconUrl())"
                 />
               </div>
               <div class="flex items-center justify-between">

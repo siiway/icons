@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <!-- Copyright (c) 2020 Microsoft Corporation. Copyright (c) 2026 SiiWay Team (MIT License) - https://icons.siiway.org/brand/nextbridge/icon.svg -->
     <path d="M1,10C1,7.239 3.239,5 6,5L13,5C15.761,5 18,7.239 18,10C18,12.761 15.761,15 13,15L6,15C3.239,15 1,12.761 1,10ZM6,7C4.343,7 3,8.343 3,10C3,11.657 4.343,13 6,13L13,13C14.657,13 16,11.657 16,10C16,8.343 14.657,7 13,7L6,7Z" style="fill:url(#_Radial1);"/>
     <path d="M1,10C1,7.239 3.239,5 6,5L13,5C15.761,5 18,7.239 18,10C18,12.761 15.761,15 13,15L6,15C3.239,15 1,12.761 1,10ZM6,7C4.343,7 3,8.343 3,10C3,11.657 4.343,13 6,13L13,13C14.657,13 16,11.657 16,10C16,8.343 14.657,7 13,7L6,7Z" style="fill:url(#_Radial2);"/>
     <path d="M1,10C1,7.239 3.239,5 6,5L13,5C15.761,5 18,7.239 18,10C18,12.761 15.761,15 13,15L6,15C3.239,15 1,12.761 1,10ZM6,7C4.343,7 3,8.343 3,10C3,11.657 4.343,13 6,13L13,13C14.657,13 16,11.657 16,10C16,8.343 14.657,7 13,7L6,7Z" style="fill:url(#_Linear3);"/>
