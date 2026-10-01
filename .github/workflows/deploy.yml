@@ -33,10 +33,12 @@ jobs:
       - name: Install icon_gen
         run: |
           set -euo pipefail
-          RELEASE_JSON="$(curl -fsSL https://api.github.com/repos/siiway/icon_gen/releases/latest)"
+          RELEASE_JSON="$(curl -fsSL -H "Authorization: Bearer ${{ github.token }}" https://api.github.com/repos/siiway/icon_gen/releases/latest)"
           ASSET_URL="$(printf '%s' "$RELEASE_JSON" | jq -r '.assets[] | select(.name == "icon_gen") | .browser_download_url')"
           if [ -n "$ASSET_URL" ] && [ "$ASSET_URL" != "null" ]; then
-            curl -fsSL "$ASSET_URL" -o /usr/local/bin/icon_gen
+            curl -fsSL -H "Authorization: Bearer ${{ github.token }}" \
+              -H "Accept: application/octet-stream" "$ASSET_URL" \
+              -o /usr/local/bin/icon_gen
             chmod +x /usr/local/bin/icon_gen
             echo "icon_gen installed successfully"
           else
