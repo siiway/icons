@@ -101,14 +101,44 @@ const snippet = computed(() => {
 
 const copiedSnippet = ref(false)
 const copiedRawSvg = ref(false)
+const copiedUrl = ref(false)
 
 watch(
   () => props.brand,
   () => {
     copiedSnippet.value = false
     copiedRawSvg.value = false
+    copiedUrl.value = false
   },
 )
+
+function selectAll(event: Event) {
+  const el = event.target as HTMLTextAreaElement | HTMLInputElement
+  el.select()
+}
+
+function selectPre(event: MouseEvent) {
+  const selection = window.getSelection()
+  if (!selection) return
+  const range = document.createRange()
+  range.selectNodeContents(event.currentTarget as Node)
+  selection.removeAllRanges()
+  selection.addRange(range)
+}
+
+async function copyText(text: string, flag: Ref<boolean>) {
+  try {
+    await navigator.clipboard.writeText(text)
+    flag.value = true
+    setTimeout(() => (flag.value = false), 1500)
+  } catch {
+    flag.value = false
+  }
+}
+
+async function copyUrl() {
+  await copyText(absoluteUrl(iconUrl()), copiedUrl)
+}
 
 async function copySnippet() {
   try {
@@ -210,8 +240,21 @@ async function copyRawSvg() {
               </UButton>
             </div>
           </div>
+          <div class="mb-3 flex items-stretch gap-2">
+            <UInput
+              :model-value="absoluteUrl(iconUrl())"
+              readonly
+              size="sm"
+              class="flex-1"
+              @focus="selectAll"
+              @click="selectAll"
+            />
+            <UButton variant="soft" size="sm" class="shrink-0" @click="copyUrl">
+              {{ copiedUrl ? t('common.copied') : t('drawer.copyUrl') }}
+            </UButton>
+          </div>
           <div class="rounded-xl border border-zinc-800 bg-zinc-950 p-4">
-            <pre class="max-h-56 overflow-auto font-mono text-xs text-zinc-200 selection:bg-primary-500/30"><code>{{ displaySvgContent }}</code></pre>
+            <pre class="max-h-56 cursor-pointer overflow-auto font-mono text-xs text-zinc-200 selection:bg-primary-500/30" @click="selectPre"><code>{{ displaySvgContent }}</code></pre>
           </div>
         </section>
 
@@ -224,7 +267,7 @@ async function copyRawSvg() {
             </UButton>
           </div>
           <div class="rounded-xl border border-zinc-800 bg-zinc-950 p-4">
-            <pre class="overflow-x-auto font-mono text-xs text-zinc-200 selection:bg-primary-500/30"><code>{{ snippet }}</code></pre>
+            <pre class="cursor-pointer overflow-x-auto font-mono text-xs text-zinc-200 selection:bg-primary-500/30" @click="selectPre"><code>{{ snippet }}</code></pre>
           </div>
         </section>
 
@@ -247,15 +290,25 @@ async function copyRawSvg() {
                   @error="(e) => ((e.target as HTMLImageElement).src = iconUrl())"
                 />
               </div>
-              <div class="flex items-center justify-between">
+              <div class="flex items-center justify-between gap-1">
                 <span class="text-xs text-zinc-500">{{ s }}×{{ s }}</span>
-                <button
-                  type="button"
-                  class="text-xs text-primary-500 hover:underline"
-                  @click="download(iconUrl(s), `icon-${s}.png`)"
-                >
-                  {{ t('common.download') }}
-                </button>
+                <div class="flex items-center gap-2">
+                  <a
+                    :href="iconUrl(s)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs text-zinc-500 hover:underline"
+                  >
+                    {{ t('drawer.copyLink') }}
+                  </a>
+                  <a
+                    :href="iconUrl(s)"
+                    :download="`icon-${s}.png`"
+                    class="text-xs text-primary-500 hover:underline"
+                  >
+                    {{ t('common.download') }}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
