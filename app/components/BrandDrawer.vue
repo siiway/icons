@@ -280,7 +280,7 @@ async function copyRawSvg() {
               :key="s"
               class="rounded-xl border border-zinc-200 p-3 dark:border-zinc-800"
             >
-              <div :class="[bgClass, 'mb-2 flex h-20 items-center justify-center rounded-lg']">
+              <div :class="[bgClass, 'mb-2 flex h-28 items-center justify-center rounded-lg']">
                 <img
                   :src="iconUrl(s)"
                   :width="Math.min(s, 64)"
@@ -290,9 +290,9 @@ async function copyRawSvg() {
                   @error="(e) => ((e.target as HTMLImageElement).src = iconUrl())"
                 />
               </div>
-              <div class="flex items-center justify-between gap-1">
+              <div class="flex flex-col gap-1">
                 <span class="text-xs text-zinc-500">{{ s }}×{{ s }}</span>
-                <div class="flex items-center gap-2">
+                <div class="flex flex-col items-start gap-1">
                   <a
                     :href="iconUrl(s)"
                     target="_blank"
