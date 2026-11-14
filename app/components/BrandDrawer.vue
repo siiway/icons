@@ -102,6 +102,7 @@ const snippet = computed(() => {
 const copiedSnippet = ref(false)
 const copiedRawSvg = ref(false)
 const copiedUrl = ref(false)
+const copiedSizeLink = ref<number | null>(null)
 
 watch(
   () => props.brand,
@@ -109,6 +110,7 @@ watch(
     copiedSnippet.value = false
     copiedRawSvg.value = false
     copiedUrl.value = false
+    copiedSizeLink.value = null
   },
 )
 
@@ -138,6 +140,19 @@ async function copyText(text: string, flag: Ref<boolean>) {
 
 async function copyUrl() {
   await copyText(absoluteUrl(iconUrl()), copiedUrl)
+}
+
+async function copySizeLink(size: number) {
+  const url = absoluteUrl(iconUrl(size))
+  try {
+    await navigator.clipboard.writeText(url)
+    copiedSizeLink.value = size
+    setTimeout(() => {
+      if (copiedSizeLink.value === size) copiedSizeLink.value = null
+    }, 1500)
+  } catch {
+    copiedSizeLink.value = null
+  }
 }
 
 async function copySnippet() {
@@ -293,21 +308,20 @@ async function copyRawSvg() {
               <div class="flex flex-col gap-1">
                 <span class="text-xs text-zinc-500">{{ s }}×{{ s }}</span>
                 <div class="flex flex-col items-start gap-1">
-                  <a
-                    :href="iconUrl(s)"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
                     class="text-xs text-zinc-500 hover:underline"
+                    @click="copySizeLink(s)"
                   >
-                    {{ t('drawer.copyLink') }}
-                  </a>
-                  <a
-                    :href="iconUrl(s)"
-                    :download="`icon-${s}.png`"
+                    {{ copiedSizeLink === s ? t('common.copied') : t('drawer.copyLink') }}
+                  </button>
+                  <button
+                    type="button"
                     class="text-xs text-primary-500 hover:underline"
+                    @click="download(iconUrl(s), `icon-${s}.png`)"
                   >
                     {{ t('common.download') }}
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
