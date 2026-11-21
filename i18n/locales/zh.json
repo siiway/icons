@@ -20,6 +20,8 @@
     "bgChecker": "透明",
     "bgLight": "浅色",
     "bgDark": "深色",
+    "padTight": "无留白",
+    "padPadded": "有留白",
     "snippetComment": "{name} 图标",
     "preview": "预览",
     "sizes": "尺寸",

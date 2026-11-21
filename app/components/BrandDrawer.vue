@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { Brand, Extra, Lockup } from '~~/shared/schema'
+import type { IconVariant } from '~~/shared/assets'
 import { ACCENT_COLORS } from '~~/shared/accents'
-import { publicUrl } from '~~/shared/assets'
+import { iconVariant, iconVariantFileName, iconVariantUrl, publicUrl } from '~~/shared/assets'
 
 const props = defineProps<{ brand: Brand | null }>()
 const open = defineModel<boolean>({ default: false })
@@ -9,6 +10,7 @@ const open = defineModel<boolean>({ default: false })
 const siteConfig = useSiteConfig()
 const { t } = useI18n()
 const { mode, bgClass } = useBackground()
+const { isPadded } = useIconVariant()
 const { download } = useDownload()
 
 const accentColor = computed(() => ACCENT_COLORS[props.brand?.accent ?? siteConfig.accent])
@@ -20,10 +22,20 @@ const bgOptions = computed(
       { key: 'dark', label: t('drawer.bgDark') },
     ] as const,
 )
+const padOptions = computed(
+  () =>
+    [
+      { key: 'tight', padded: false, label: t('drawer.padTight') },
+      { key: 'padded', padded: true, label: t('drawer.padPadded') },
+    ] as const,
+)
+const variant = computed<IconVariant>(() => iconVariant(isPadded.value, mode.value))
 
 function iconUrl(size?: number) {
   const b = props.brand
-  return b ? publicUrl(b.id, 'icon', 'icon', b.icon.source, size) : ''
+  if (!b) return ''
+  if (typeof b.icon.source !== 'string') return publicUrl(b.id, 'icon', 'icon', b.icon.source, size)
+  return iconVariantUrl(b.id, variant.value, size)
 }
 function lockupUrl(l: Lockup, size?: number) {
   return props.brand ? publicUrl(props.brand.id, 'lockup', l.id, l.source, size) : ''
@@ -43,28 +55,27 @@ function absoluteUrl(path: string): string {
 }
 
 const rawSvgContent = ref('')
-const loadingSvg = ref(false)
+let svgRequestId = 0
 
 watch(
-  () => props.brand,
-  async (b) => {
+  [() => props.brand, iconUrl],
+  async ([b, url]) => {
+    const requestId = ++svgRequestId
     if (!b) {
       rawSvgContent.value = ''
       return
     }
-    const url = iconUrl()
-    loadingSvg.value = true
+    rawSvgContent.value = ''
     try {
       const res = await fetch(url)
+      if (requestId !== svgRequestId) return
       if (res.ok) {
         rawSvgContent.value = await res.text()
       } else {
         rawSvgContent.value = `<!-- Failed to load SVG from ${url} -->`
       }
     } catch {
-      rawSvgContent.value = `<!-- Error fetching SVG content -->`
-    } finally {
-      loadingSvg.value = false
+      if (requestId === svgRequestId) rawSvgContent.value = `<!-- Error fetching SVG content -->`
     }
   },
   { immediate: true },
@@ -73,16 +84,23 @@ watch(
 const displaySvgContent = computed(() => {
   if (!rawSvgContent.value || !props.brand) return rawSvgContent.value
   let text = rawSvgContent.value
-  // If the SVG doesn't have a copyright comment right after <svg>, ensure it is present
-  if (!text.includes('<!-- Copyright') && !text.includes('<!--Copyright')) {
-    const notice = props.brand.copyright?.owner
-      ? `<!-- Copyright (c) ${props.brand.copyright.owner} (${props.brand.copyright.license}) - ${siteConfig.ogUrl}/brand/${props.brand.id}/icon.svg -->`
-      : `<!-- Copyright (c) SiiWay Team - ${siteConfig.ogUrl}/brand/${props.brand.id}/icon.svg -->`
-    const svgMatch = text.match(/<svg\b[^>]*>/i)
-    if (svgMatch && svgMatch.index !== undefined) {
-      const pos = svgMatch.index + svgMatch[0].length
-      text = text.slice(0, pos) + '\n  ' + notice + text.slice(pos)
+  const sourceUrl = absoluteUrl(iconUrl())
+  const existingComment = text.match(/<!--\s*Copyright[\s\S]*?-->/i)
+  if (existingComment) {
+    const updatedComment = existingComment[0].replace(/https?:\/\/\S+?(?=\s*-->)/i, sourceUrl)
+    if (updatedComment !== existingComment[0]) {
+      text = text.replace(existingComment[0], () => updatedComment)
     }
+    return text
+  }
+  // If the SVG doesn't have a copyright comment right after <svg>, ensure it is present
+  const notice = props.brand.copyright?.owner
+    ? `<!-- Copyright (c) ${props.brand.copyright.owner} (${props.brand.copyright.license}) - ${sourceUrl} -->`
+    : `<!-- Copyright (c) SiiWay Team - ${sourceUrl} -->`
+  const svgMatch = text.match(/<svg\b[^>]*>/i)
+  if (svgMatch && svgMatch.index !== undefined) {
+    const pos = svgMatch.index + svgMatch[0].length
+    text = text.slice(0, pos) + '\n  ' + notice + text.slice(pos)
   }
   return text
 })
@@ -225,16 +243,31 @@ async function copyRawSvg() {
         <section>
           <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
             <h3 class="text-sm font-medium text-zinc-500 dark:text-zinc-400">{{ t('drawer.preview') }}</h3>
-            <UButtonGroup size="xs">
-              <UButton
-                v-for="option in bgOptions"
-                :key="option.key"
-                :variant="mode === option.key ? 'solid' : 'soft'"
-                @click="mode = option.key"
-              >
-                {{ option.label }}
-              </UButton>
-            </UButtonGroup>
+            <div class="flex flex-wrap items-center gap-2">
+              <UButtonGroup size="xs">
+                <UButton
+                  v-for="option in padOptions"
+                  :key="option.key"
+                  :variant="isPadded === option.padded ? 'solid' : 'soft'"
+                  :aria-pressed="isPadded === option.padded"
+                  @click="isPadded = option.padded"
+                >
+                  {{ option.label }}
+                </UButton>
+              </UButtonGroup>
+              <span class="hidden h-4 w-px bg-zinc-200 dark:bg-zinc-800 sm:block" aria-hidden="true" />
+              <UButtonGroup size="xs">
+                <UButton
+                  v-for="option in bgOptions"
+                  :key="option.key"
+                  :variant="mode === option.key ? 'solid' : 'soft'"
+                  :aria-pressed="mode === option.key"
+                  @click="mode = option.key"
+                >
+                  {{ option.label }}
+                </UButton>
+              </UButtonGroup>
+            </div>
           </div>
           <div :class="[bgClass, 'flex h-48 items-center justify-center rounded-2xl p-4 overflow-hidden']">
             <div v-if="rawSvgContent" class="h-32 w-32 flex items-center justify-center [&>svg]:h-full [&>svg]:w-full" v-html="rawSvgContent" />
@@ -247,7 +280,7 @@ async function copyRawSvg() {
           <div class="mb-3 flex items-center justify-between">
             <h3 class="text-sm font-medium text-zinc-500 dark:text-zinc-400">{{ t('drawer.rawSvgTitle') }}</h3>
             <div class="flex gap-2">
-              <UButton variant="soft" size="xs" @click="download(iconUrl(), fileName(iconUrl(), 'icon'))">
+              <UButton variant="soft" size="xs" @click="download(iconUrl(), iconVariantFileName(variant))">
                 {{ t('drawer.downloadSvg') }}
               </UButton>
               <UButton variant="ghost" size="xs" @click="copyRawSvg">
@@ -318,7 +351,7 @@ async function copyRawSvg() {
                   <button
                     type="button"
                     class="text-xs text-primary-500 hover:underline"
-                    @click="download(iconUrl(s), `icon-${s}.png`)"
+                    @click="download(iconUrl(s), iconVariantFileName(variant, s))"
                   >
                     {{ t('common.download') }}
                   </button>

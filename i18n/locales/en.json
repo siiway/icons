@@ -21,6 +21,8 @@
     "bgChecker": "Transparent",
     "bgLight": "Light",
     "bgDark": "Dark",
+    "padTight": "No padding",
+    "padPadded": "Padded",
     "snippetComment": "{name} icon",
     "preview": "Preview",
     "sizes": "Sizes",

@@ -1,7 +1,12 @@
-import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { execSync } from 'node:child_process'
+import { Resvg } from '@resvg/resvg-js'
+import sharp from 'sharp'
 import { iconsConfig } from '../app/data/icons.config'
+import { ICON_VARIANTS } from '../shared/assets'
+import type { IconVariant } from '../shared/assets'
 
 const rootDir = resolve('.')
 const iconsDir = join(rootDir, 'icons')
@@ -33,6 +38,45 @@ if (iconGenBin) {
   console.log('[prepare-icons] icon_gen binary not found in PATH or .tools/bin')
 }
 
+function isUpToDate(outputPath: string, sourcePaths: string[]): boolean {
+  if (!existsSync(outputPath)) return false
+  const outputMtime = statSync(outputPath).mtimeMs
+  return sourcePaths.every((sourcePath) => outputMtime > statSync(sourcePath).mtimeMs)
+}
+
+async function generateVariantSizePngs(
+  dir: string,
+  sourceDir: string,
+  brandId: string,
+  variant: IconVariant,
+  sizes: number[],
+) {
+  const svgPath = join(dir, `${variant}.svg`)
+  if (!existsSync(svgPath)) {
+    console.warn(`[prepare-icons] Warning: public/brand/${brandId}/${variant}.svg not found`)
+    return
+  }
+  if (!sizes.length) return
+
+  const sourceSvgPath = join(sourceDir, `${variant}.svg`)
+  const rendererPath = fileURLToPath(import.meta.url)
+  const references = existsSync(sourceSvgPath) ? [sourceSvgPath, rendererPath] : [svgPath, rendererPath]
+  const pendingSizes = sizes.filter((size) => !isUpToDate(join(dir, `${variant}-${size}.png`), references))
+  if (!pendingSizes.length) return
+
+  const largest = Math.max(...pendingSizes)
+  const basePng = new Resvg(readFileSync(svgPath), {
+    fitTo: { mode: 'width', value: largest },
+  })
+    .render()
+    .asPng()
+
+  for (const size of pendingSizes) {
+    const png = await sharp(basePng).resize(size, size, { fit: 'fill' }).png().toBuffer()
+    writeFileSync(join(dir, `${variant}-${size}.png`), png)
+  }
+}
+
 console.log('[prepare-icons] Generating icon sets...')
 const startTime = performance.now()
 
@@ -52,8 +96,9 @@ for (const [groupId, group] of Object.entries(iconsConfig.groups)) {
     mkdirSync(brandOutDir, { recursive: true })
 
     if (iconGenBin) {
-      // Run icon_gen with -s to generate all showcase sizes + standard favicon sets
-      execSync(`"${iconGenBin}" -i "${iconSvgPath}" -o "${brandOutDir}" -s`, {
+      // icon_gen generates the favicon sets and SVG variants; showcase PNGs are
+      // generated below for every variant so all sizes stay in sync.
+      execSync(`"${iconGenBin}" -i "${iconSvgPath}" -o "${brandOutDir}"`, {
         stdio: 'inherit',
       })
     }
@@ -73,6 +118,17 @@ for (const [groupId, group] of Object.entries(iconsConfig.groups)) {
       if (existsSync(srcFile)) {
         cpSync(srcFile, join(brandOutDir, file), { force: true })
       }
+    }
+
+    // Generate every variant at the configured showcase sizes
+    for (const variant of ICON_VARIANTS) {
+      await generateVariantSizePngs(brandOutDir, srcDir, brandId, variant, brand.icon.sizes)
+    }
+    const icon256Path = join(brandOutDir, 'icon-256.png')
+    if (existsSync(icon256Path)) {
+      cpSync(icon256Path, join(brandOutDir, 'icon.png'), { force: true })
+    } else if (brand.icon.sizes.length) {
+      console.warn(`[prepare-icons] Warning: 256px PNG missing for ${brandId}, icon.png not generated`)
     }
 
     // Mirror to legacy root route (/<brandId>/...)
